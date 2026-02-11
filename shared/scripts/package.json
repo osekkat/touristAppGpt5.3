@@ -1,0 +1,27 @@
+{
+  "name": "marrakech-guide-scripts",
+  "version": "1.0.0",
+  "description": "Shared content pipeline scripts for Marrakech Guide",
+  "type": "module",
+  "scripts": {
+    "validate": "if command -v bun >/dev/null 2>&1; then bun run validate-content.ts; else tsx validate-content.ts; fi",
+    "build-bundle": "if command -v bun >/dev/null 2>&1; then bun run build-bundle.ts; else echo 'Error: bun is required for build-bundle.ts (uses bun:sqlite)' >&2; exit 1; fi",
+    "check-links": "if command -v bun >/dev/null 2>&1; then bun run check-links.ts; else tsx check-links.ts; fi",
+    "check-l10n": "if command -v bun >/dev/null 2>&1; then bun run check-localization-parity.ts; else tsx check-localization-parity.ts; fi",
+    "test:l10n": "if command -v bun >/dev/null 2>&1; then bun run check-localization-parity.test.ts; else tsx check-localization-parity.test.ts; fi"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.32",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "ajv": "^8.17.1",
+    "ajv-draft-04": "^1.0.0",
+    "ajv-formats": "^2.1.1",
+    "resolve-pkg-maps": "^1.0.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
